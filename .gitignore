@@ -1,0 +1,6 @@
+access.conf
+*.pyc
+*.jpg
+*.png
+*.jpeg
+api/media/*
