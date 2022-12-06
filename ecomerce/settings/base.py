@@ -19,7 +19,7 @@ from datetime import timedelta
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 CONFIG_DIR = Path(__file__).resolve().parent.parent
 
-credentials_file = os.path.join(CONFIG_DIR, 'settings', 'credentiasl', 'access.conf')
+credentials_file = os.path.join(CONFIG_DIR, 'settings', 'credentials', 'access.conf')
 parser = configparser.ConfigParser()
 parser.read(credentials_file)
 
@@ -41,11 +41,12 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
-
+    'apps.usuarios',
 ]
 
 THIRD_APPS = [
-
+    'rest_framework',
+    'corsheaders',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_APPS
@@ -137,7 +138,7 @@ SIMPLE_JWT = {
 
 LANGUAGE_CODE = 'es-ar'
 
-TIME_ZONE = 'UTC-3'
+TIME_ZONE = 'America/Argentina/Cordoba'
 
 USE_I18N = True
 
