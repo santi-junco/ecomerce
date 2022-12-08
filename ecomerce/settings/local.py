@@ -9,6 +9,10 @@ URL_BASE = parser.get('ambiente','host')
 PORT_BACK = parser.get('ambiente','port_back')
 PORT_FRONT= parser.get('ambiente','port_front')
 
+PATH_ERROR = 'error-redireccion'
+PATH_ERROR_VERIF = 'error-verificacion'
+PATH_URL_REDIRECT = 'auth/login'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

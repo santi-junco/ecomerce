@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body style="margin: 0; padding: 0; word-spacing: normal; background-color: #0A057B;">
+    <div role="article" aria-roledescription="email" lang="en" style="text-size-adjust: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; background-color: #ada9a9;">
+        <table role="presentation" style="width: 100%; border: none; border-spacing: 0">
+            <tr>
+                <td align="center" style="padding: 0">
+                    <table role="presentation" style="width: 94%; max-width: 600px; border: none; border-spacing: 0; text-align: left; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px; color: #888888;">
+                        <tr>
+                            <td style="padding: 40px 30px 30px 30px; text-align: center; font-size: 24px; font-weight: bold;">
+                                <header class="header" style="padding-top: 20px; background-color: #0A057B">
+                                    <a href="" style="text-decoration: none">
+                                        <img src="" width="140" alt="Logo" style="color:#ffffff ;width: 140px; max-width: 80%; height: auto; border: none; text-decoration: none; color: #0A057B;"/>
+                                        <img src="" width="165" alt="Logo" style="width: 165px; max-width: 80%; height: auto; border: none; text-decoration: none; color: #0A057B;"/>
+                                    </a>
+                                </header>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 40px 30px 30px 30px; text-align: center; font-size: 18px; font-weight: bold; background-color: #ffffff;">
+                                <div id="card" class="col-lge" style="display: inline-block; width: 100%; max-width: 395px; vertical-align: top; horizontal-align: center; padding-bottom: 20px; font-family: Arial, sans-serif; font-size: 16px; line-height: 22px; color: #0a0a0a;">
+                                    {% if tipo == 'registro' %}
+                                        <p style="text-align: center; font-size: 20px; font-weight: bold;">
+                                            Se registró exitosamente en Ecomerce
+                                        </p>
+                                        <p>Para activar su cuenta presione en el siguiente botón</p>
+                                        <p style="text-align: center; font-size: 20px; font-weight: bold;">
+                                            <a href="{{url}}" target="_blank" style="background: #0A057B; text-decoration: none; padding: 10px 25px; color: #ffffff; border-radius: 4px; display: inline-block; mso-padding-alt: 0; text-underline-color: #0A057B;">
+                                                <span style="mso-text-raise: 10pt; font-weight: bold">
+                                                    Activar cuenta
+                                                </span>
+                                            </a>
+                                        </p>
+                                    {% elif tipo == 'recuperarContraseña' %}
+                                        <p style="text-align: center; font-size: 20px; font-weight: bold;">
+                                            Recuperación de contraseña
+                                        </p>
+                                        <h3>Ingrese en el siguiente link</h3>
+                                        <p style="text-align: center; font-size: 20px; font-weight: bold;">
+                                            <a href="{{url}}" target="_blank" style="background: #0A057B; text-decoration: none; padding: 10px 25px; color: #ffffff; border-radius: 4px; display: inline-block; mso-padding-alt: 0; text-underline-color: #0A057B;">
+                                                <span style="mso-text-raise: 10pt; font-weight: bold">
+                                                    Recuperar Contraseña
+                                                </span>
+                                            </a>
+                                        </p>
+                                    {% else %}
+                                        <p style="text-align: center; font-size: 20px; font-weight: bold;">
+                                            Su contraseña fue reestablecida exitosamente
+                                        </p>
+                                        <p style="text-align: center; font-size: 20px; font-weight: bold;">
+                                            <a href="{{url}}" target="_blank" style="background: #0A057B; text-decoration: none; padding: 10px 25px; color: #ffffff; border-radius: 4px; display: inline-block; mso-padding-alt: 0; text-underline-color: #0A057B;">
+                                                <span style="mso-text-raise: 10pt; font-weight: bold">
+                                                    Ingresar a Ecomerce
+                                                </span>
+                                            </a>
+                                        </p>
+                                    {% endif %}
+                                </div>
+                                <p style="margin-top: 0; margin-bottom: 12px; font-size: 12px">
+                                    Si crees haber recibido por error este mensaje, simplemente ignoralo
+                                </p>
+                                <p style="margin-top: 0; margin-bottom: 12px; font-size: 12px">
+                                    No responda a este mensaje. Esta dirección no acepta correos
+                                    electrónicos, por lo que no recibirá respuestas.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 30px; background-color: #ffffff">
+                                <p style="margin-top: 0; margin-bottom: 20px; font-size: 15px">
+                                    Este mensaje fue enviado por Ecomerce, con
+                                    domicilio en Avenida Siempre Viva 1234, Resistencia - Chaco
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

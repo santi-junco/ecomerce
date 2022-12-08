@@ -8,5 +8,6 @@ class CustomPagination(PageNumberPagination):
         response.data['actual'] = self.page.number
         response.data['total_paginas'] = self.page.paginator.num_pages
         return response
+
 class PaginationDiez(CustomPagination):
     page_size = 10
