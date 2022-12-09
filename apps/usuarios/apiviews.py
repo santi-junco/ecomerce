@@ -23,8 +23,11 @@ class UsuarioCreateApiView(CreateAPIView):
     def perform_create(self, serializer):
         with transaction.atomic():
             usuario = serializer.save()
+            usuario.username = usuario.email
+            usuario.password = make_password(usuario.password)
+            usuario.save()
             
-            url = f'{settings.URL_BASE}{settings.PORT_BACK}api/v1/finalizar-registro/{usuario.id}'
+            url = f'{settings.URL_BASE}{settings.PORT_BACK}api/v1/usuarios/finalizar-registro/{usuario.id}'
 
             enviarMail('registro', 'Registro Exitoso', usuario.email, url )
 
@@ -49,17 +52,17 @@ class FinalizarRegistroApiView(APIView):
             try:
                 usuario = Usuarios.objects.get(id=pk)
             except:
-                url = f'{settings.BASE_URL}{settings.PORT_FRONT}{settings.PATH_ERROR}'
+                url = f'{settings.URL_BASE}{settings.PORT_FRONT}{settings.PATH_ERROR}'
                 return HttpResponseRedirect(redirect_to=url)
 
             if usuario.is_active:
-                url = f'{settings.BASE_URL}{settings.PORT_FRONT}{settings.PATH_ERROR_VERIF}'
+                url = f'{settings.URL_BASE}{settings.PORT_FRONT}{settings.PATH_ERROR_VERIF}'
                 return HttpResponseRedirect(redirect_to=url)
 
             usuario.is_active = True
             usuario.save()
             
-            url = f'{settings.BASE_URL}{settings.PORT_FRONT}{settings.PATH_URL_REDIRECT}'
+            url = f'{settings.URL_BASE}{settings.PORT_FRONT}{settings.PATH_URL_REDIRECT}'
             return HttpResponseRedirect(redirect_to=url)
 
 # Recuperar contraseña
