@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from .apiviews import CustomeTokenObtainPairView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    path('api/v1/login/', CustomeTokenObtainPairView.as_view()),
+    
     # apps
     path('api/v1/usuarios/', include('apps.usuarios.urls'))
 ]
