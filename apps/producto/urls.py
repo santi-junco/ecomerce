@@ -8,4 +8,8 @@ urlpatterns = [
     path('ver/<int:pk>/', ProductoRetrieveApiView.as_view()),
     path('editar/<int:pk>/', ProductoEditApiView.as_view()),
     path('eliminar/<int:pk>/', ProductoDeleteApiView.as_view()),
+    
+    # favorito
+    path('agregar-favorito/', FavoritoCreateApiView.as_view()),
+    path('quitar-favorito/<int:pk>/', FavoritosDeleteApiView.as_view()),
 ]

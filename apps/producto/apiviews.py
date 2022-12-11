@@ -3,8 +3,8 @@ from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView,
 
 from django.db import transaction
 
-from .models import Productos, Imagenes
-from .serializers import ProductoSerializers
+from .models import Productos, Imagenes, Favorito
+from .serializers import ProductoSerializers, FavoritoSerializers
 
 from apps.core.exception import CustomException
 from apps.categorias.models import Categorias, RelacionCategoriasProductos
@@ -134,3 +134,11 @@ class ProductoDeleteApiView(DestroyAPIView):
     queryset = Productos.objects.all()
     serializer_class = ProductoSerializers
 
+# Agregar a favoritos
+class FavoritoCreateApiView(CreateAPIView):
+    serializer_class = FavoritoSerializers
+
+# quitar de favoritos
+class FavoritosDeleteApiView(DestroyAPIView):
+    queryset = Favorito.objects.all()
+    serializer_class = FavoritoSerializers
