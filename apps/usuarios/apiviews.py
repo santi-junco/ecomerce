@@ -24,7 +24,7 @@ class UsuarioCreateApiView(CreateAPIView):
         with transaction.atomic():
             usuario = serializer.save()
             usuario.username = usuario.email
-            usuario.password = make_password(usuario.password)
+            usuario.password = make_password(self.request.data['password'])
             usuario.save()
             
             url = f'{settings.URL_BASE}{settings.PORT_BACK}api/v1/usuarios/finalizar-registro/{usuario.id}'

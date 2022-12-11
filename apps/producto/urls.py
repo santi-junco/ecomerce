@@ -12,4 +12,8 @@ urlpatterns = [
     # favorito
     path('agregar-favorito/', FavoritoCreateApiView.as_view()),
     path('quitar-favorito/<int:pk>/', FavoritosDeleteApiView.as_view()),
+    path('listar-favorito/<int:pk>/', FavoritosListApiView.as_view()),
+
+    # filtro categorias
+    path('', ProductosPorCategoriaListApiView.as_view()),
 ]

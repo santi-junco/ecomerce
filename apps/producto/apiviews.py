@@ -1,10 +1,12 @@
 from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, DestroyAPIView, UpdateAPIView
+from rest_framework.response import Response
+from rest_framework.filters import SearchFilter
 
 from django.db import transaction
 
 from .models import Productos, Imagenes, Favorito
-from .serializers import ProductoSerializers, FavoritoSerializers
+from .serializers import ProductoSerializers,FavoritosListSerializers, FavoritoSerializers, ProductoCategoriaSerializers
 
 from apps.core.exception import CustomException
 from apps.categorias.models import Categorias, RelacionCategoriasProductos
@@ -142,3 +144,21 @@ class FavoritoCreateApiView(CreateAPIView):
 class FavoritosDeleteApiView(DestroyAPIView):
     queryset = Favorito.objects.all()
     serializer_class = FavoritoSerializers
+
+# listar favoritos
+class FavoritosListApiView(ListAPIView):
+    serializer_class = FavoritosListSerializers
+
+    def get_queryset(self):
+        try:
+            queryset = Favorito.objects.filter(usuario=self.kwargs['pk'])
+        except:
+            raise CustomException('Error al obtener favoritos')
+        return queryset
+
+# filtro por categorias
+class ProductosPorCategoriaListApiView(ListAPIView):
+    queryset = RelacionCategoriasProductos.objects.all() #filter().values_list('producto', flat=True)
+    serializer_class = ProductoCategoriaSerializers
+    filter_backends = [SearchFilter]
+    search_fields = ['$categoria__nombre']
