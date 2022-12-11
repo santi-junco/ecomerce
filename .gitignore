@@ -4,3 +4,4 @@ access.conf
 *.png
 *.jpeg
 api/media/*
+pruebas.py
