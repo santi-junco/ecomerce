@@ -21,8 +21,10 @@ from .apiviews import CustomeTokenObtainPairView
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    # login
     path('api/v1/login/', CustomeTokenObtainPairView.as_view()),
     
     # apps
-    path('api/v1/usuarios/', include('apps.usuarios.urls'))
+    path('api/v1/usuarios/', include('apps.usuarios.urls')),
+    path('api/v1/productos/', include('apps.producto.urls')),
 ]
