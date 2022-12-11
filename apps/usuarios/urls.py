@@ -8,5 +8,5 @@ urlpatterns = [
     path('editar/<int:pk>/', UsuarioUpdateApiView.as_view()),
     path('finalizar-registro/<int:pk>/', FinalizarRegistroApiView.as_view()),
     path('recuperar-password/', RecuperarPasswordApiView.as_view()),
-    path('cambiar-password/<id>/', CambiarPasswordApiView.as_view()),
+    path('cambiar-password/<pk>/', CambiarPasswordApiView.as_view()),
 ]

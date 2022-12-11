@@ -5,5 +5,10 @@ from .models import Usuarios
 class UsuariosSerializers(serializers.ModelSerializer):
     class Meta:
         model = Usuarios
-        fields = '__all__'
+        fields = [
+            'id',
+            'first_name',
+            'last_name',
+            'email'
+        ]
 

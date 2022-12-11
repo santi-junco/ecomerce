@@ -43,6 +43,16 @@ class UsuarioUpdateApiView(UpdateAPIView):
     queryset = Usuarios.objects.all()
     serializer_class = UsuariosSerializers
 
+    def perform_update(self, serializer):
+        with transaction.atomic():
+            usuario = serializer.save()
+            usuario.username = usuario.email
+            if self.request.data.get('password', None):
+                usuario.password = make_password(self.request.data['password'])
+            usuario.save()
+
+            return super().perform_update(serializer)
+
 # Finalizar registro
 class FinalizarRegistroApiView(APIView):
     permission_classes = [AllowAny]
@@ -81,7 +91,7 @@ class RecuperarPasswordApiView(APIView):
             except:
                 raise CustomException('Usuario no encontrado')
 
-            url = f'{settings.BASE_URL}{settings.PORT_FRONT}auth/change-password/{id_encypt}'
+            url = f'{settings.URL_BASE}{settings.PORT_FRONT}auth/change-password/{id_encypt}'
             tipo = 'recuperarContraseña'
             asunto = 'Recuperacion de Contraseña'
 

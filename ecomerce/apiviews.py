@@ -6,18 +6,6 @@ from apps.usuarios.models import Usuarios
 
 from django.db import transaction
 
-class CustomeTokenObtainPairView(TokenObtainPairView):
-    def get_serializer_class(self):
-        try:
-            usuario = Usuarios.objects.get(email=self.request.data['email'])
-        except:
-            raise CustomException("Usuario no encontado")
-
-        if not usuario.is_active:
-            raise CustomException("Debe activar su cuenta para iniciar sesion")
-        
-        return CustomeTokenObtainPairSerializer
-
 class CustomeTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
@@ -33,3 +21,16 @@ class CustomeTokenObtainPairSerializer(TokenObtainPairSerializer):
             }
 
             return token
+
+class CustomeTokenObtainPairView(TokenObtainPairView):
+    def get_serializer_class(self):
+        try:
+            usuario = Usuarios.objects.get(email=self.request.data['email'])
+        except:
+            raise CustomException("Usuario no encontado")
+
+        if usuario.is_active:
+            return CustomeTokenObtainPairSerializer
+        
+        return CustomException("Debe activar su cuenta para iniciar sesion")
+        
