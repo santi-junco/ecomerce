@@ -14,6 +14,7 @@ class CarritoSerializers(serializers.ModelSerializer):
 
 class CarritoListSerializers(serializers.ModelSerializer):
     producto = serializers.SerializerMethodField()
+    modificado = serializers.DateTimeField(format='%d/%m/%Y')
     class Meta:
         model = Carrito
         fields = [
@@ -34,7 +35,7 @@ class CarritoListSerializers(serializers.ModelSerializer):
             for producto in productos:
 
                 try:
-                    imagen = Imagenes.objects.filter(producto=producto['producto']).first()
+                    imagen = Imagenes.objects.filter(producto=producto.producto).last().imagen
                 except:
                     imagen = None
 
@@ -43,7 +44,7 @@ class CarritoListSerializers(serializers.ModelSerializer):
                     'descripcion': producto.producto.descripcion,
                     'precio': producto.producto.precio,
                     'cantidad': producto.cantidad,
-                    'imagen': imagen.imagen if imagen else imagen
+                    'imagen': imagen.name if imagen else imagen
                 }
 
                 producto_list.append(data)

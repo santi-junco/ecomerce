@@ -12,7 +12,7 @@ ESTADO_CARRITO_CHOICES = (
 class Carrito(TimeStampedModel):
     usuario = models.ForeignKey(Usuarios, null=False, blank=False, on_delete=models.CASCADE)
     estado = models.CharField(max_length=15, choices=ESTADO_CARRITO_CHOICES, default='en curso')
-    monto = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
+    monto = models.DecimalField(max_digits=7, decimal_places=2, default=0)
 
     class Meta:
         db_table = 'carrito_Carrito'
